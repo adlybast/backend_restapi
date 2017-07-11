@@ -128,4 +128,11 @@ class MyModel extends CI_Model {
         $this->db->where('id',$id)->delete('class');
         return array('status' => 200,'message' => 'Data has been deleted.');
     }
+
+    // Assign and Kick student
+
+    public function student_available()
+    {
+        $this->db->select('id,name,email,class_id')->from('student')->where('id',0)->order_by('id','asc')->get()->result();
+    }
 }

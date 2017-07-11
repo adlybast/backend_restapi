@@ -34,5 +34,12 @@ class Auth extends CI_Controller {
 			}
 		}
 	}
-	
+
+	// public function authorise_user(access_token){
+
+	// 	// cari dari tabel user ada apa engga
+	// 	// kalo ga ada return error
+	// 	//kalo ada return user detail
+	// }
+	 	
 }

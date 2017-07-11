@@ -50,6 +50,9 @@ class Class_Controller extends CI_Controller {
 
 	public function create()
 	{
+		// panggil authorise user
+		// kalo return false, langsung balikin api 401
+		// kalo return user, proceed
 		$method = $_SERVER['REQUEST_METHOD'];
 		if($method != 'POST'){
 			json_output(400,array('status' => 400,'message' => 'Bad request.'));
