@@ -131,4 +131,47 @@ class Student extends CI_Controller {
 		}
 	}
 
+	public function assign($id)
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'PUT' || $this->uri->segment(3) == '' || is_numeric($this->uri->segment(3)) == FALSE){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			$check_auth_client = $this->MyModel->check_auth_client();
+			if($check_auth_client == true){
+		        $response = $this->MyModel->auth();
+		        $respStatus = $response['status'];
+		        if($response['status'] == 200){
+					$params = json_decode(file_get_contents('php://input'), TRUE);
+					$params['updated_at'] = date('Y-m-d H:i:s');
+					if ($params['name'] == "" || $params['email'] == "") {
+						$respStatus = 400;
+						$resp = array('status' => 400,'message' =>  'Name & Email can\'t empty');
+					} else {
+		        		$resp = $this->MyModel->assign_student($id,$params);
+					}
+					json_output($respStatus,$resp);
+		        }
+			}
+		}
+	}
+
+	public function kick($id)
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'DELETE' || $this->uri->segment(3) == '' || is_numeric($this->uri->segment(3)) == FALSE){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			$check_auth_client = $this->MyModel->check_auth_client();
+			if($check_auth_client == true){
+		        $response = $this->MyModel->auth();
+		        if($response['status'] == 200){
+		        	$resp = $this->MyModel->kick_student($id);
+					json_output($response['status'],$resp);
+		        }
+			}
+		}
+	}
+
+
 }
