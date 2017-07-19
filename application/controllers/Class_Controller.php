@@ -117,4 +117,22 @@ class Class_Controller extends CI_Controller {
 		}
 	}
 
+	public function class_list($id)
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'GET'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			$check_auth_client = $this->MyModel->check_auth_client();
+			if($check_auth_client == true){
+		        $response = $this->MyModel->auth();
+		        if($response['status'] == 200){
+		        	$resp = $this->MyModel->class_listing($id);
+	    			json_output($response['status'],$resp);
+	    			// echo var_dump($resp);
+		        }
+			}
+		}		
+	}
+
 }

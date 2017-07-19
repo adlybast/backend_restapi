@@ -129,11 +129,14 @@ class MyModel extends CI_Model {
         return array('status' => 200,'message' => 'Data has been deleted.');
     }
 
+    public function class_listing($id){
+        return $this->db->select('id,name,email,class_id')->from('student')->where('class_id',$id)->order_by('id','asc')->get()->result();        
+    }
     // Assign and Kick student
 
     public function student_available()
-    {
-        $this->db->select('id,name,email,class_id')->from('student')->where('class_id',0)->order_by('id','asc')->get()->result();
+    {        
+        return $this->db->select('id,name,email,class_id')->from('student')->where('class_id',0)->order_by('id','asc')->get()->result();        
     }
 
     public function assign_student($id,$data)
@@ -142,9 +145,9 @@ class MyModel extends CI_Model {
         return array('status' => 200,'message' => 'Student has been assigned' );;
     }
 
-    public function kick_student($id)
+    public function kick_student($id,$data)
     {
-        $this->db->where('id',$id)->delete('student');
+        $this->db->where('id',$id)->update('student',$data)->set('class_id',0);
         return array('status' => 200, 'message' => 'Student has been kicked' );
     }
 }

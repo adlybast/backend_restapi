@@ -55,28 +55,21 @@ $route['auth/login']['post']           		= 'auth/login';
 $route['auth/logout']['post']          		= 'auth/logout';
 
 $route['student']['get']          	       	= 'student';
+$route['student/available']['get']    		= 'student/available';
 $route['student/detail/(:num)']['get']    	= 'student/detail/$1';
 $route['student/create']['post']   	  		= 'student/create';
 $route['student/update/(:num)']['put']    	= 'student/update/$1';
 $route['student/delete/(:num)']['delete'] 	= 'student/delete/$1';
 
-
-// $route['student']['get']          	= 'student';
-// $route['student/(:num)']['get']    	= 'student/$1';
-// $route['student']['post']   	   	= 'student';
-// $route['student/(:num)']['put']    	= 'student/$1';
-// $route['student/(:num)']['delete'] 	= 'student/$1';
-
 $route['class']['get']          			= 'class';
+$route['class/list/(:num)']['get'] 			= 'class/list/$1';
 $route['class/detail/(:num)']['get']    	= 'class/detail/$1';
 $route['class/create']['post']   	 	 	= 'class/create';
 $route['class/update/(:num)']['put']    	= 'class/update/$1';
 $route['class/delete/(:num)']['delete'] 	= 'class/delete/$1';
 
-$route['student/(:num)/class']['put'] 		= 'student/$1/class';
-$route['student/(:num)/class']['delete'] 	= 'student/$1/class';
-
-$route['']
+$route['student/assign/(:num)']['put'] 		= 'student/assign/$1';
+$route['student/kick/(:num)']['put'] 		= 'student/kick/$1';
 
 $route['default_controller'] 				= 'welcome';
 $route['404_override'] 						= '';
