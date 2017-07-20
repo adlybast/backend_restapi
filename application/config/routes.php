@@ -69,7 +69,7 @@ $route['class/update/(:num)']['put']    	= 'class/update/$1';
 $route['class/delete/(:num)']['delete'] 	= 'class/delete/$1';
 
 $route['student/assign/(:num)']['put'] 		= 'student/assign/$1';
-$route['student/kick/(:num)']['put'] 		= 'student/kick/$1';
+$route['student/kick/(:num)']['delete'] 	= 'student/kick/$1';
 
 $route['default_controller'] 				= 'welcome';
 $route['404_override'] 						= '';
