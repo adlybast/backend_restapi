@@ -115,7 +115,7 @@ class MyModel extends CI_Model {
 
     public function kick_student($id)
     {
-        $this->db->where('id',$id)->delete('student', ' class_id');
+        $this->db->where('id',$id)->update('student', array('class_id' => 'NULL'));
         return array('status' => 200, 'message' => 'Student has been kicked' );
     }
 
